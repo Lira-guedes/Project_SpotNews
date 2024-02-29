@@ -31,15 +31,15 @@ def title_validate(title):
 
 
 class News(models.Model):
+    created_at = models.DateField(null=False, blank=False)
+    image = models.ImageField(null=True, blank=True, upload_to="img/")
+    categories = models.ManyToManyField(Category, related_name="news")
     content = models.TextField(
         null=False, blank=False, validators=[content_validate]
       )
     title = models.CharField(
         null=False, blank=False, validators=[title_validate], max_length=200
       )
-    created_at = models.DateField(null=False, blank=False)
-    image = models.ImageField(null=True, blank=True, upload_to="img/")
-    categories = models.ManyToManyField(Category, related_name="news")
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="news"
       )
