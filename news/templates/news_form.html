@@ -38,13 +38,8 @@
 
     <label>Categorias</label>
     {% for category in categories %}
-    <label for="id_categories_{{ category.id }}">{{ category.name }}</label>
-    <input
-      type="checkbox"
-      name="categories"
-      id="id_categories_{{ category.id }}"
-      value="{{ category.name }}"
-    />
+    <label for="id_categories_">{{ category.name }}</label>
+    <input type="checkbox" name="categories" value="{{ category.name }}" />
     {% endfor %}
 
     <button type="submit">Salvar</button>

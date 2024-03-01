@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from news.models import News, Category
+from news.models import News, Category, User
 from news.forms import CategoryForm, NewsForm
 from news.serializers import CategorySerializer
 from rest_framework import viewsets
+
 
 def home(request):
     news = News.objects.all()
@@ -26,6 +27,8 @@ def category_form(request):
 
 def news_form(request):
     form = NewsForm()
+    categories = Category.objects.all()
+    users = User.objects.all()
     if request.method == 'POST':
         form = NewsForm(request.POST, request.FILES)
         if form.is_valid():
@@ -39,8 +42,8 @@ def news_form(request):
             news.categories.set(form.cleaned_data['categories'])
             news.save()
             return redirect("home-page")
-
-    return render(request, "news_form.html", {"form": form})
+    return render(request, "news_form.html",
+                  {"form": form, "categories": categories, "users": users})
 
 
 class CategoryViewSet(viewsets.ModelViewSet):

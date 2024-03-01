@@ -4,14 +4,8 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 
-class CategoryForm(forms.ModelForm):
-    class Meta:
-      model = Category
-      fields = "__all__"
-      label= {
-          "name": "Nome" 
-      }
-    # name = forms.CharField(max_length=200, required=True, label="Nome")
+class CategoryForm(forms.Form):
+    name = forms.CharField(max_length=200, required=True, label="Nome")
 
 
 def title_validate(title):
