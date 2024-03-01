@@ -13,7 +13,8 @@
       <div class="news-card">
         <li>
           <h2 class="news-title">
-            <a href="{% url 'news-details-page' news.id %}">{{ news.title }}</a>
+            {{ news.title }}
+            <!-- <a href="{% url 'news-details-page' news.id %}">{{ news.title }}</a> -->
           </h2>
           <span class="news-date">{{ news.created_at|date:"d/m/Y" }}</span>
           <img src="{% static news.image.url %}" alt="{{ news.title }}" />
